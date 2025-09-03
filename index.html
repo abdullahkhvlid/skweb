@@ -11,13 +11,353 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    :root {
+      --primary: #005baa;
+      --secondary: #003a6d;
+      --accent: #00a8ff;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+      overflow-x: hidden;
+      background-color: #f9fbfd;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      background: var(--gradient);
+      font-size: 0.9rem;
+      padding: 8px 0;
+    }
+
+    .top-bar a {
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .top-bar a:hover {
+      color: var(--accent) !important;
+      transform: translateY(-2px);
+    }
+
+    /* Navigation */
+    .navbar {
+      background: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+      transition: all 0.4s ease;
+    }
+
+    .navbar-brand {
+      font-size: 1.8rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+    }
+
+    .nav-link {
+      color: var(--dark) !important;
+      font-weight: 500;
+      margin: 0 5px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .navbar-toggler {
+      border: none;
+      outline: none;
+    }
+
+    /* Hero Carousel */
+    .carousel {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      margin-top: 20px;
+    }
+
+    .carousel-item {
+      height: 80vh;
+      min-height: 500px;
+    }
+
+    .carousel-item img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+
+    .carousel-control-prev, 
+    .carousel-control-next {
+      width: 50px;
+      height: 50px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .carousel:hover .carousel-control-prev,
+    .carousel:hover .carousel-control-next {
+      opacity: 1;
+    }
+
+    /* Sections */
+    section {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .section-title {
+      position: relative;
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: var(--secondary);
+    }
+
+    .section-title p {
+      color: #6c757d;
+      font-size: 1.1rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 3px;
+      background: var(--accent);
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Cards */
+    .card {
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+      height: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-img-top {
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .card-img-top {
+      transform: scale(1.05);
+    }
+
+    .card-body {
+      padding: 25px;
+    }
+
+    .card-title {
+      color: var(--primary);
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      border: none;
+      border-radius: 30px;
+      padding: 10px 25px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* About Section */
+    #about {
+      background: linear-gradient(to bottom, #ffffff 0%, #f8fbfe 100%);
+    }
+
+    #about img {
+      border-radius: 12px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.5s ease;
+    }
+
+    #about img:hover {
+      transform: scale(1.02);
+    }
+
+    /* Contact Section */
+    #contact {
+      background: var(--gradient);
+      color: white;
+      text-align: center;
+    }
+
+    #contact h2 {
+      color: white;
+    }
+
+    #contact a {
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    #contact a:hover {
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 20px 0;
+      font-size: 0.9rem;
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--gradient);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      opacity: 0;
+      transition: all 0.4s ease;
+      z-index: 1000;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      bottom: 30px;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .carousel-item {
+        height: 60vh;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .carousel-item {
+        height: 50vh;
+        min-height: 400px;
+      }
+      
+      section {
+        padding: 60px 0;
+      }
+      
+      .card {
+        margin-bottom: 30px;
+      }
+      
+      .top-bar div {
+        justify-content: center !important;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .carousel-item {
+        height: 40vh;
+        min-height: 300px;
+      }
+      
+      .section-title h2 {
+        font-size: 1.8rem;
+      }
+      
+      .navbar-brand {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
   <!-- Top Bar -->
-  <div class="top-bar text-white py-2 bg-dark">
+  <div class="top-bar text-white py-2">
     <div class="container d-flex justify-content-between flex-wrap">
       <div>
         <i class="fas fa-phone-alt me-2"></i><a href="tel:+923153134248" class="text-white">92 3153134248</a>
@@ -30,7 +370,7 @@
   </div>
 
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
       <a class="navbar-brand fw-bold" href="#">Sadiq Electric Store</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -48,41 +388,41 @@
     </div>
   </nav>
 
-<!-- Carousel Start -->
-<div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="p1.webp" class="d-block w-100" alt="Industrial Cables">
-    </div>
-    <div class="carousel-item">
-      <img src="p2.webp" class="d-block w-100" alt="Panel Wiring">
-    </div>
-    <div class="carousel-item">
-      <img src="p3.webp" class="d-block w-100" alt="Electrical Engineering Services">
+  <!-- Hero Section with Carousel -->
+  <div class="container">
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="p1.webp" class="d-block w-100" alt="Industrial Cables">
+        </div>
+        <div class="carousel-item">
+          <img src="p2.webp" class="d-block w-100" alt="Panel Wiring">
+        </div>
+        <div class="carousel-item">
+          <img src="p3.webp" class="d-block w-100" alt="Electrical Engineering Services">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  </button>
-</div>
-<!-- Carousel End -->
-
 
   <!-- About Section -->
-  <section id="about" class="py-5 bg-light">
+  <section id="about" class="py-5">
     <div class="container">
-      <div class="text-center mb-5">
+      <div class="section-title">
         <h2 class="fw-bold">About Us</h2>
         <p class="text-muted">25+ Years of Electrical Engineering Excellence</p>
       </div>
       <div class="row align-items-center">
-        <div class="col-md-6 mb-4">
+        <div class="col-md-6 mb-4" data-aos="fade-right">
           <img src="https://lh3.googleusercontent.com/p/AF1QipPAsQMfbOY6whQBba5vhfpBBdsibVP39SFeeaL2=s680-w680-h510-rw" alt="Workshop" class="img-fluid rounded shadow"/>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" data-aos="fade-left">
           <h4 class="text-primary fw-bold">Your Trusted Partner</h4>
           <p>Sadiq Electric Store was founded in 1996 in Karachi. We specialize in the fabrication, installation, and maintenance of high-quality electrical panels.</p>
           <p>Our certified engineers deliver reliable and compliant electrical services for industries, institutions, and commercial clients.</p>
@@ -100,13 +440,13 @@
   <!-- Services -->
   <section id="services" class="py-5">
     <div class="container">
-      <div class="text-center mb-5">
+      <div class="section-title">
         <h2 class="fw-bold">Our Services</h2>
         <p class="text-muted">Reliable electrical engineering from consultation to execution</p>
       </div>
       <div class="row g-4">
         <!-- Card Template -->
-        <div class="col-md-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
           <div class="card h-100 shadow-sm">
             <img src="s4.webp" class="card-img-top" alt="Electrical Design">
             <div class="card-body">
@@ -117,7 +457,7 @@
           </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
           <div class="card h-100 shadow-sm">
             <img src="s5.webp" class="card-img-top" alt="Installation">
             <div class="card-body">
@@ -128,7 +468,7 @@
           </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
           <div class="card h-100 shadow-sm">
             <img src="s6.webp" class="card-img-top" alt="Maintenance">
             <div class="card-body">
@@ -145,12 +485,12 @@
   <!-- Products -->
   <section id="products" class="py-5 bg-light">
     <div class="container">
-      <div class="text-center mb-5">
+      <div class="section-title">
         <h2 class="fw-bold">Our Products</h2>
         <p class="text-muted">Electrical Panels Tailored to Your Needs</p>
       </div>
       <div class="row g-4">
-        <div class="col-md-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
           <div class="card h-100 shadow-sm">
             <img src="s7.webp" class="card-img-top" alt="HT Panel">
             <div class="card-body">
@@ -161,20 +501,18 @@
           </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
           <div class="card h-100 shadow-sm">
             <img src="s8.webp" class="card-img-top" alt="LT Panel">
             <div class="card-body">
               <h5 class="card-title text-primary">Industrial Cables</h5>
-              <p class="card-text">We deal in all kinds of industrial cables — including power, control, instrumentation, flexible, imported, and local varieties. Our cables are sourced from trusted brands, ensuring durability, efficiency, and compliance with industry standards.
-
-</p>
+              <p class="card-text">We deal in all kinds of industrial cables — including power, control, instrumentation, flexible, imported, and local varieties. Our cables are sourced from trusted brands, ensuring durability, efficiency, and compliance with industry standards.</p>
               <a href="tel:+923153134248" class="btn btn-primary btn-sm">Get Quote</a>
             </div>
           </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
           <div class="card h-100 shadow-sm">
             <img src="s9.webp" class="card-img-top" alt="PCC Panel">
             <div class="card-body">
@@ -205,6 +543,46 @@
     </div>
   </footer>
 
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Initialize AOS animations
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-in-out'
+    });
+
+    // Back to top button
+    const backToTopButton = document.querySelector('.back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('show');
+      } else {
+        backToTopButton.classList.remove('show');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        document.querySelector('.navbar').style.padding = '10px 0';
+        document.querySelector('.navbar').style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+      } else {
+        document.querySelector('.navbar').style.padding = '15px 0';
+        document.querySelector('.navbar').style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+      }
+    });
+  </script>
 </body>
 </html>
