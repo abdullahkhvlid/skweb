@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://sadiqelectric.com/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://sadiqelectric.com/p1.webp</image:loc>
+      <image:title>3200A LT panel, Form 3b, built at Sadiq Electric Store, Karachi</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://sadiqelectric.com/s7.webp</image:loc>
+      <image:title>Low tension distribution panel with ACB and MCCB</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://sadiqelectric.com/s8.webp</image:loc>
+      <image:title>High tension switchgear with vacuum circuit breaker</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://sadiqelectric.com/s9.webp</image:loc>
+      <image:title>Motor control center with drawer style feeders</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://sadiqelectric.com/s1.webp</image:loc>
+      <image:title>Industrial cable reels at the merchant counter</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://sadiqelectric.com/s2.webp</image:loc>
+      <image:title>Distribution board with MCBs and RCCBs</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://sadiqelectric.com/p2.webp</image:loc>
+      <image:title>Inside the Sadiq Electric Store workshop, Karachi</image:title>
+    </image:image>
+  </url>
+</urlset>
